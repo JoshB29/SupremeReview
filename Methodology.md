@@ -7,4 +7,4 @@ SupremeReview predictions be generated using the code in this repository or at t
 SupremeReview uses logistic regression on features derived from Court of Appeal (CoA) decisions. I retrieved from the 11 court of appeals circuits 9,451 decisions (from the years 2010-2015) were one of the litigants appealed to SCOTUS to review (and thus possibly overturn) the ruling. Note that the decision of SCOTUS to review the cases does **not** mean that the repeal the ruling. It simply means that SCOTUS agrees to take the case.
 
 The workflow of SupremeReview is shown below:
-
+[pg_0004.pdf](https://github.com/JoshB29/SupremeReview/files/1347417/pg_0004.pdf)
