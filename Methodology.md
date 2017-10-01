@@ -1,4 +1,5 @@
 #SupremeReview Overview
+
 Each year, thousands of litigants petition The Supreme Court of the United States (SCOTUS) to hear their cases and overturn a lower court's ruling. However, only a few percentage of these cases are actually heard by the court; most petitions are denied. SupremeReview is a computational approach for predicting which cases SCOTUS will hear, given the text of a lower court's decision.
 **Supreme Review predicts which cases will be heard by SCOTUS and which will not.** 
 SupremeReview predictions be generated using the code in this repository or at the following website:http://www.supremereview.online/.
