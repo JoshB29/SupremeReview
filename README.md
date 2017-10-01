@@ -9,8 +9,9 @@ See the "Methodology" section for more information regarding how SupremeReview w
 # Use
 SupremeReview relies on analyzing Court of Appeal Decisions, after extracting features from the decisions (a percentage of which were heard by SCOTUS), a logistic classifier is trained to predict which cases will be heard and which not. The final score is scalar between 0 and 1, where 1 represents the highest possible score of the case being heard by SCOTUS, and 0 represents the lowest possible score.
 
+There are two python scripts provided:
 ## SCOTUS_analysis_Final.ipynb
-There are two python scripts provided. The first, SCOTUS_analysis_Final.ipynb, is an iPython notebook that trains the SupremeReview classifier using logistic regression. This script reads  a list of files that represent IDs of cases that take the following form:
+This is an iPython notebook that trains the SupremeReview classifier using logistic regression. This script reads  a list of files that represent IDs of cases that take the following form:
 
     ID   label    file_location
 
@@ -28,6 +29,12 @@ This script will produce a number of files in the directory it is run in:
     output_predictions.csv: Output predictions for the files that were analyzed.
     
 As well as a ROC curve showing the model performance, and an bargraph showing feature importance.
+
+## SCOTUS_new_document.py
+
+This script will take a new document and run it through the logistic classifier to predict whether it will be heard by SCOTUS. The path to the classifier must be provided, as well as a path to the original decisions trained on. Note that this script takes a PDF of the new decision. This script can be run from the command line:
+
+   python ~/Scripts/SCOTUS_new_document.py New_Decision.pdf
 
 
 
