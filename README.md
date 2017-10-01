@@ -1,4 +1,4 @@
-# SupremeReview--Will SCOTUS Take Your Case?
+# SupremeReview-Will SCOTUS Take Your Case?
 Analysis of Court of Appeals Decisions to predict which cases the Supreme Court will grant hearings to.
 
 # Overview
