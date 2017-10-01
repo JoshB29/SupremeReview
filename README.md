@@ -37,5 +37,3 @@ This script will take a new document and run it through the logistic classifier 
    python ~/Scripts/SCOTUS_new_document.py New_Decision.pdf
 
 
-
-Methodology
