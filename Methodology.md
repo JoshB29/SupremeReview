@@ -1,10 +1,10 @@
-#SupremeReview Overview
+# SupremeReview Overview
 
 Each year, thousands of litigants petition The Supreme Court of the United States (SCOTUS) to hear their cases and overturn a lower court's ruling. However, only a few percentage of these cases are actually heard by the court; most petitions are denied. SupremeReview is a computational approach for predicting which cases SCOTUS will hear, given the text of a lower court's decision.
 **Supreme Review predicts which cases will be heard by SCOTUS and which will not.** 
 SupremeReview predictions be generated using the code in this repository or at the following website:http://www.supremereview.online/.
 
-#SupremeReview Methodology
+# SupremeReview Methodology
 SupremeReview uses logistic regression on features derived from Court of Appeal (CoA) decisions. I retrieved from the 11 court of appeals circuits 9,451 decisions (from the years 2010-2015) where one of the litigants appealed to SCOTUS to review (and thus possibly overturn) the ruling. Note that the decision of SCOTUS to review the cases does **not** mean that the repeal the ruling; it simply means that SCOTUS agrees to take the case. Of these 9,451 cases 148 were actually reviewed by SCOTUS.
 
 The workflow of SupremeReview is shown below:
@@ -24,4 +24,12 @@ A subset of feature importances are shown below. In the Y axis, the features are
 
 ![pj_0007](https://user-images.githubusercontent.com/29230946/31057965-c709d56a-a6b9-11e7-87de-ed448b2c931a.jpg)
 
+#Miscellaneous Issues
+
+A common issue with unbalanced classification problems (such as the one faced in this project) is overfitting. Thus, I compared the logistic classifier described above to a similair approach, except artifically creating a balanced classifier. In this alternate approach, I sampled half of the granted decisions, and a sample *of the same size* from the not granted the decisions. After training a logistic classifier, I then evaluated the performance on the rest of the decisions. A plot of the scores is shown below:
+
+
+![pj_0010](https://user-images.githubusercontent.com/29230946/31058065-64cb6b32-a6bb-11e7-935f-be4d3a15b2ad.jpg)
+
+Note that the balanced classifer has an average score of 19%, while the balanced classifier has an average has an average score of on 2.5%. Since, in reality, only about 1.6% of cases petitioned to SCOTUS are actually heard, the unbalanced classifier in this case provides a more realistic score, and is thus the final model used in the analysis and on the corresponding website.
 
