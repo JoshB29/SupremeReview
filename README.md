@@ -3,6 +3,7 @@ Analysis of Court of Appeals Decisions to predict which cases the Supreme Court 
 
 # Overview
 Each year, thousands of litigants petition The Supreme Court of the United States (SCOTUS) to hear their cases and overturn a lower court's ruling. However, only a few percentage of these cases are actually heard by the court; most petitions are denied. SupremeReview is a computational approach for predicting which cases SCOTUS will hear, given the text of a lower court's decision. While there are geneneral established for manually judging which cases SCOTUS will take (in technical legal terms, this called granting *writ of certiorari*), SupremeReview assigns a quantitative probability (using logistic regression) for any case for whether it will be heard.
+SupremeReview predictions can also be generated at the following website:http://www.supremereview.online/
 
 See the "Methodology" document for more information regarding how SupremeReview was trained its performance.
 
