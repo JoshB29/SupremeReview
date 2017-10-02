@@ -2,7 +2,7 @@
 Analysis of Court of Appeals Decisions to predict which cases the Supreme Court will grant hearings to.
 
 # Overview
-Each year, thousands of litigants petition The Supreme Court of the United States (SCOTUS) to hear their cases and overturn a lower court's ruling. However, only a few percentage of these cases are actually heard by the court; most petitions are denied. SupremeReview is a computational approach for predicting which cases SCOTUS will hear, given the text of a lower court's decision. While there are geneneral established for manually judging which cases SCOTUS will take (in technical legal terms, this called granting *writ of certiorari*), SupremeReview assigns a quantitative probability (using logistic regression) for any case for whether it will be heard.
+Each year, thousands of litigants petition The Supreme Court of the United States (SCOTUS) to hear their cases and overturn a lower court's ruling. However, only a few percentage of these cases are actually heard by the court; most petitions are denied. SupremeReview is a computational approach for predicting which cases SCOTUS will hear, given the text of a lower court's decision. While there are general established for manually judging which cases SCOTUS will take (in technical legal terms, this called granting *writ of certiorari*), SupremeReview assigns a quantitative probability (using logistic regression) for any case for whether it will be heard.
 SupremeReview predictions be generated using the code in this repository or at the following website:http://www.supremereview.online/.
 
 See the "Methodology" document for more information regarding how SupremeReview was trained its performance.
@@ -16,7 +16,7 @@ This is an iPython notebook that trains the SupremeReview classifier using logis
 
     ID   label    file_location
 
-Where ID is a number identifier for the case, the label is whether it was heard by the court, and  file_locationis the path to a plain text file of the court of appeals decision. For example:
+Where ID is a number identifier for the case, the label is whether it was heard by the court, and  file_location is the path to a plain text file of the court of appeals decision. For example:
 
     ID      label   file_location
     0810835 1       /Users/joshuabroyde/Projects/Supreme_Court_Data/All_Decisions/text/0810835.txt
@@ -46,7 +46,7 @@ SupremeReview uses logistic regression on features derived from Court of Appeal 
 The workflow of SupremeReview is shown below:
 ![pj_0004](https://user-images.githubusercontent.com/29230946/31057895-51282d48-a6b8-11e7-9e00-d370d316c58d.jpg)
 
-Specifically, after the PDF of each decision was converted into text, features (in the form of unigrams) were extracted. There were a total of 34 features: a bag of words approach was used to detect the presence of the words "dissent" and "disagree" in each decision. Similarily, the length of each decision (in the form of a word count) was calculated. Finally, the Term-Frequency Inverse Document Frequency algorithm was used to calculate the relevence scores for all words with at least 10 characters that were present in at least 2000 of the documents (i.e. 20% of the entire corpus).
+Specifically, after the PDF of each decision was converted into text, features (in the form of unigrams) were extracted. There were a total of 34 features: a bag of words approach was used to detect the presence of the words "dissent" and "disagree" in each decision. Similarly, the length of each decision (in the form of a word count) was calculated. Finally, the Term-Frequency Inverse Document Frequency algorithm was used to calculate the relevance scores for all words with at least 10 characters that were present in at least 2000 of the documents (i.e. 20% of the entire corpus).
 
 I then appliedLogistic regression  to this entire feature matrix, treating it as classification problem; decisions that were not heard by SCOTUS were assigned a label of 0, and decisions that were heard by SCOTUS were given a label of 1.  L2 regularization and 10 by 10 fold Kfold repeated cross-validation. The ROC curve for these results are shown below:
 
@@ -56,19 +56,16 @@ In the ROC curve, the yellow line shows the clasifier performance. At a flase po
 
 #Feature Importance
 
-A subset of feature importances are shown below. In the Y axis, the features are displayed, while the actual feature importance is shown on the X axis (calculated by taking the regression coefficient normalized by the standard deviation of the feature values). Note that in this plot all of the features are unigram TF-IDF scores, except for word-count, which is the word count of the document, and the dissent feature, which is given a 1 if the word dissent is the document and 0 if not.
+A subset of  feature importance values are shown below. In the Y axis, the features are displayed, while the actual feature importance is shown on the X axis (calculated by taking the regression coefficient normalized by the standard deviation of the feature values). Note that in this plot all of the features are unigram TF-IDF scores, except for word-count, which is the word count of the document, and the dissent feature, which is given a 1 if the word dissent is the document and 0 if not.
 
 ![pj_0007](https://user-images.githubusercontent.com/29230946/31057965-c709d56a-a6b9-11e7-87de-ed448b2c931a.jpg)
 
 #Miscellaneous Issues
 
-A common issue with unbalanced classification problems (such as the one faced in this project) is overfitting. Thus, I compared the logistic classifier described above to a similair approach, except artifically creating a balanced classifier. In this alternate approach, I sampled half of the granted decisions, and a sample *of the same size* from the not granted the decisions. After training a logistic classifier, I then evaluated the performance on the rest of the decisions. A plot of the scores is shown below:
+A common issue with unbalanced classification problems (such as the one faced in this project) is overfitting. Thus, I compared the logistic classifier described above to a similar approach, except artificially creating a balanced classifier. In this alternate approach, I sampled half of the granted decisions, and a sample *of the same size* from the not granted the decisions. After training a logistic classifier, I then evaluated the performance on the rest of the decisions. A plot of the scores is shown below:
 
 
 ![pj_0010](https://user-images.githubusercontent.com/29230946/31058065-64cb6b32-a6bb-11e7-935f-be4d3a15b2ad.jpg)
 
-Note that the balanced classifer has an average score of 19%, while the balanced classifier has an average has an average score of on 2.5%. Since, in reality, only about 1.6% of cases petitioned to SCOTUS are actually heard, the unbalanced classifier in this case provides a more realistic score, and is thus the final model used in the analysis and on the corresponding website.
-
-
-
+Note that the balanced classifier has an average score of 19%, while the balanced classifier has an average has an average score of on 2.5%. Since, in reality, only about 1.6% of cases petitioned to SCOTUS are actually heard, the unbalanced classifier in this case provides a more realistic score, and is thus the final model used in the analysis and on the corresponding website.
 
