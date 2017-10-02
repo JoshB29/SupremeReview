@@ -53,13 +53,13 @@ I then appliedLogistic regression  to this entire feature matrix, treating it as
 
 In the ROC curve, the yellow line shows the clasifier performance. At a flase positive rate of 7%, a true positive rate of 50% was achieved. This is a true positive rate 7 times greater than random.
 
-#Feature Importance
+# Feature Importance
 
 A subset of  feature importance values are shown below. In the Y axis, the features are displayed, while the actual feature importance is shown on the X axis (calculated by taking the regression coefficient normalized by the standard deviation of the feature values). Note that in this plot all of the features are unigram TF-IDF scores, except for word-count, which is the word count of the document, and the dissent feature, which is given a 1 if the word dissent is the document and 0 if not.
 
 ![pj_0007](https://user-images.githubusercontent.com/29230946/31057965-c709d56a-a6b9-11e7-87de-ed448b2c931a.jpg)
 
-#Miscellaneous Issues
+# Miscellaneous Issues
 
 A common issue with unbalanced classification problems (such as the one faced in this project) is overfitting. Thus, I compared the logistic classifier described above to a similar approach, except artificially creating a balanced classifier. In this alternate approach, I sampled half of the granted decisions, and a sample *of the same size* from the not granted the decisions. After training a logistic classifier, I then evaluated the performance on the rest of the decisions. A plot of the scores is shown below:
 
